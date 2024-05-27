@@ -43,4 +43,29 @@ public class Grafo {
         }
     }
 
+    public void depthSearch(int inicial, int alvo) {
+        boolean[] visitado = new boolean[matrix.length];
+        depthHelper(inicial, visitado, alvo);
+    }
+
+    private void depthHelper(int inicial, boolean[] visitado, int alvo) {
+        if(visitado[inicial]) {
+            return;
+        } else {
+            visitado[inicial] = true;
+            System.out.println(nodes.get(inicial).valor + " = visitado");
+        }
+
+        for(int i = 0; i < matrix[inicial].length; i++) {
+            if(matrix[inicial][i] == 1) {
+                depthHelper(i, visitado, alvo);
+            }
+            if(visitado[alvo]) {
+                System.out.println("Chegou no destino!");
+                break;
+            }
+        }
+
+    }
+
 }
